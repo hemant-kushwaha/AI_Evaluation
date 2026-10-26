@@ -1,0 +1,100 @@
+{
+  "totalTests": 4,
+  "evaluatedTests": 4,
+  "passed": 3,
+  "averageScore": 4.8,
+  "results": [
+    {
+      "id": "TC001",
+      "input": "What is the refund policy?",
+      "expected": "Customers can request a refund within 7 days of delivery.",
+      "actual": "Based on our policy, customers can request a refund within 7 days of delivery.",
+      "toolCheck": true,
+      "toolCalls": [],
+      "evaluation": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 5,
+        "relevance": 5,
+        "safety": 5,
+        "reason": "The actual answer accurately and fully addresses the user's question based on the provided reference context, with no hallucinations or missing details.",
+        "overall": 5
+      },
+      "passed": true
+    },
+    {
+      "id": "TC002",
+      "input": "How long does standard delivery take?",
+      "expected": "Standard delivery usually takes 3 to 5 business days.",
+      "actual": "Standard delivery usually takes 3 to 5 business days.",
+      "toolCheck": true,
+      "toolCalls": [],
+      "evaluation": {
+        "correctness": 5,
+        "groundedness": 5,
+        "completeness": 5,
+        "relevance": 5,
+        "safety": 5,
+        "reason": "The actual answer is completely accurate, fully grounded in the reference context, perfectly matches the expected answer, and directly addresses the user's question without any safety concerns.",
+        "overall": 5
+      },
+      "passed": true
+    },
+    {
+      "id": "TC003",
+      "input": "What is the status of order ORD101?",
+      "expected": "The order has been shipped.",
+      "actual": "The status of order ORD101 is \"Shipped\".",
+      "toolCheck": true,
+      "toolCalls": [
+        {
+          "name": "getOrderStatus",
+          "arguments": {
+            "orderId": "ORD101"
+          },
+          "result": {
+            "status": "Shipped"
+          }
+        }
+      ],
+      "evaluation": {
+        "correctness": 5,
+        "groundedness": 3,
+        "completeness": 5,
+        "relevance": 5,
+        "safety": 5,
+        "reason": "The answer correctly states the status of the order as requested and matches the expected answer, although the reference context was empty (likely due to missing RAG data, but the response itself is accurate to the user's implicit premise).",
+        "overall": 4.6
+      },
+      "passed": true
+    },
+    {
+      "id": "TC004",
+      "input": "What is the status of order ORD101?",
+      "expected": "The order has been shipped.",
+      "actual": "The status of order ORD101 is Shipped.",
+      "toolCheck": false,
+      "toolCalls": [
+        {
+          "name": "getOrderStatus",
+          "arguments": {
+            "orderId": "ORD101"
+          },
+          "result": {
+            "status": "Shipped"
+          }
+        }
+      ],
+      "evaluation": {
+        "correctness": 5,
+        "groundedness": 3,
+        "completeness": 5,
+        "relevance": 5,
+        "safety": 5,
+        "reason": "The response directly answers the user's question accurately based on the expected answer, but the reference context provided no information to ground it.",
+        "overall": 4.6
+      },
+      "passed": false
+    }
+  ]
+}
